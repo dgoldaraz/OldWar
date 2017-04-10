@@ -20,7 +20,7 @@ private:
 
 	AAvatar* GetPlayerAvatar() const;
 
-	void AimTowardPlayer();
+	bool AimTowardPlayer(FVector& HitLocation);
 	
 	// Override over Player Controller
 	virtual void BeginPlay() override;

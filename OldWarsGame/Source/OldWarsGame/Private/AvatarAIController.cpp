@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "OldWarsGame.h"
-#include "AvatarAIController.h"
+#include "Public/AvatarAIController.h"
 
 void AAvatarAIController::BeginPlay()
 {
@@ -14,7 +14,19 @@ void AAvatarAIController::BeginPlay()
 
 void AAvatarAIController::Tick(float DeltaTime)
 {
+	if (GetAvatar() && GetPlayerAvatar())
+	{	
+		//Move towards the player
 
+		//Aim to the player
+		FVector HitLocation = FVector::ZeroVector;
+		if (AimTowardPlayer(HitLocation))
+		{
+			GetAvatar()->AimAt(HitLocation);
+		}
+		//Fire is ready
+	}
+	
 }
 
 AAvatar* AAvatarAIController::GetAvatar() const
@@ -33,8 +45,9 @@ AAvatar* AAvatarAIController::GetPlayerAvatar() const
 	return nullptr;
 }
 
-void AAvatarAIController::AimTowardPlayer()
+bool AAvatarAIController::AimTowardPlayer(FVector& HitLocation)
 {
-
+	HitLocation = GetPlayerAvatar()->GetActorLocation();
+	return true;
 }
 
