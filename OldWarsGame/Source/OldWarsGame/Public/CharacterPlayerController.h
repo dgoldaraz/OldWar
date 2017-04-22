@@ -3,9 +3,9 @@
 #pragma once
 
 #include "GameFramework/PlayerController.h"
-#include "Public/Avatar.h"
 #include "CharacterPlayerController.generated.h"
 
+class AAvatar;
 /**
  * Player Controller 
  */

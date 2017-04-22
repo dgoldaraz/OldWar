@@ -3,9 +3,9 @@
 #pragma once
 
 #include "AIController.h"
-#include "Avatar.h"
 #include "AvatarAIController.generated.h"
 
+class AAvatar;
 /**
  * This class manages the AI Controller of the enemies
  */
