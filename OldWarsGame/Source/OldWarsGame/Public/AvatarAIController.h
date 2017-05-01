@@ -25,4 +25,9 @@ private:
 	// Override over Player Controller
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	//How close AI can be to the player
+	float AcceptanceRadius = 3000;
+
+
 };

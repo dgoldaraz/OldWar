@@ -11,6 +11,8 @@
 
 class UAvatarAimingComponent;
 class UAvatarAimingPart;
+class AProjectile;
+class UAvatarMovementComponent;
 
 UCLASS()
 class OLDWARSGAME_API AAvatar : public APawn
@@ -19,6 +21,7 @@ class OLDWARSGAME_API AAvatar : public APawn
 
 public:
 
+	 //Set Aiming StaticMesh
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetAiminParts(UAvatarAimingPart* ElevationPart, UAvatarAimingPart* RotationPart);
 
@@ -37,7 +40,17 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 4000.0f; //m/s
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float ReloadTimeInSeconds = 3.0f;
+
+	UAvatarAimingPart* ShootingPart;
+
+	double LastTimeFire = 0;
 	
 };

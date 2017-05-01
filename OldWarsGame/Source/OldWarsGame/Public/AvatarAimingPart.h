@@ -8,7 +8,7 @@
 /**
  * Hold properties for the AimingPart 
  */
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent), hidecategories = ("Collision"))
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class OLDWARSGAME_API UAvatarAimingPart : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -23,15 +23,15 @@ public:
 	void Rotate(float RelativeSpeed);
 
 private:
-	UPROPERTY(EditAnywhere, Category = Aiming)
+	UPROPERTY(EditDefaultsOnly, Category = Aiming)
 	float MaxElevationDegreesPerSecond = 10.0f;
 
-	UPROPERTY(EditAnywhere, Category = Aiming)
+	UPROPERTY(EditDefaultsOnly, Category = Aiming)
 	float MaxRotateDegreesPerSecond = 25.0f;
 
-	UPROPERTY(EditAnywhere, Category = Aiming)
+	UPROPERTY(EditDefaultsOnly, Category = Aiming)
 	float MaxElevationDegree = 30.0f;
 
-	UPROPERTY(EditAnywhere, Category = Aiming)
+	UPROPERTY(EditDefaultsOnly, Category = Aiming)
 	float MinElevationDegree = 0.0f;
 };

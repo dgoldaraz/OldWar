@@ -19,11 +19,11 @@ public:
 
 
 private:
-	UPROPERTY(EditAnywhere, Category = CrossHair)
+	UPROPERTY(EditDefaultsOnly, Category = CrossHair)
 	float CrossHairXLocation = 0.5f;
-	UPROPERTY(EditAnywhere, Category = CrossHair)
+	UPROPERTY(EditDefaultsOnly, Category = CrossHair)
 	float CrossHairYLocation = 0.33333f;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 1000000.0f;
 
 	AAvatar* GetAvatar() const;

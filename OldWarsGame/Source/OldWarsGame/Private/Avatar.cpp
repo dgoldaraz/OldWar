@@ -3,7 +3,10 @@
 #include "OldWarsGame.h"
 #include "Public/Avatar.h"
 #include "Public/AvatarAimingComponent.h"
+#include "Public/Projectile.h"
+#include "Public/AvatarMovementComponent.h"
 #include "Public/AvatarAimingPart.h"
+
 
 // Sets default values
 AAvatar::AAvatar()
@@ -31,10 +34,19 @@ void AAvatar::AimAt(FVector Location)
 void AAvatar::SetAiminParts(UAvatarAimingPart* ElevationPart, UAvatarAimingPart* RotationPart)
 {
 	AvatarAimingComponent->SetElevationAimingPart(ElevationPart);
+	ShootingPart = ElevationPart;
 	AvatarAimingComponent->SetRotationAimingPart(RotationPart);
 }
 
 void AAvatar::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Shooting"));
+
+	bool IsReloaded = (FPlatformTime::Seconds() - LastTimeFire) > ReloadTimeInSeconds;
+	if (ShootingPart && IsReloaded)
+	{
+		LastTimeFire = FPlatformTime::Seconds();
+		//Spawn a projectile on the socket position of the shooting part
+		AProjectile* CurrentProjectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, ShootingPart->GetSocketLocation("Projectile"), ShootingPart->GetSocketRotation("Projectile"));
+		CurrentProjectile->LaunchProjectile(LaunchSpeed);
+	}
 }
